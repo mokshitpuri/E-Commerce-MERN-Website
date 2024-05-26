@@ -1,3 +1,4 @@
+import React from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
@@ -9,37 +10,60 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Login from "./pages/login/Login";
 
 function App() {
+  // // Check if the user is admin before accessing localStorage
+  // const isAdmin = () => {
+  //   const persistedRoot = localStorage.getItem("persist:root");
+  //   if (persistedRoot) {
+  //     try {
+  //       const { user } = JSON.parse(persistedRoot);
+  //       return user && user.currentUser && user.currentUser.isAdmin;
+  //     } catch (error) {
+  //       // Handle any parsing errors gracefully
+  //       console.error("Error parsing localStorage:", error);
+  //     }
+  //   }
+  //   return false;
+  // };
+
   return (
     <Router>
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/users">
-            <UserList />
-          </Route>
-          <Route path="/user/:userId">
-            <User />
-          </Route>
-          <Route path="/newUser">
-            <NewUser />
-          </Route>
-          <Route path="/products">
-            <ProductList />
-          </Route>
-          <Route path="/product/:productId">
-            <Product />
-          </Route>
-          <Route path="/newproduct">
-            <NewProduct />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        {/* {isAdmin() && ( */}
+          <>
+            <Topbar />
+            <div className="container">
+              <Sidebar />
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/users">
+                <UserList />
+              </Route>
+              <Route path="/user/:userId">
+                <User />
+              </Route>
+              <Route path="/newUser">
+                <NewUser />
+              </Route>
+              <Route path="/products">
+                <ProductList />
+              </Route>
+              <Route path="/product/:productId">
+                <Product />
+              </Route>
+              <Route path="/newproduct">
+                <NewProduct />
+              </Route>
+            </div>
+          </>
+        {/* )} */}
+      </Switch>
     </Router>
   );
 }

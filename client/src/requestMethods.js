@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5030/api/";
+const BASE_URL = "https://ecommerce-mern-cwyq.onrender.com/api/";
 // Attempt to get the persisted data from localStorage
 const persistedData = localStorage.getItem("persist:root");
 
